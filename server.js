@@ -9,5 +9,6 @@ export default function handler(req, res) {
     const { type } = req.query;
     const expression = expressions[type] || expressions.normal;
 
-    res.status(200).json({ expression });
+    // Ensure the binary strings are sent as strings in JSON
+    res.status(200).json({ expression: expression.map(bin => String(bin)) });
 }
